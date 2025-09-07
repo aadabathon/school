@@ -1,4 +1,3 @@
-
 public class BinarySearchTree<T extends Comparable<T>> 
 implements SortedCollection<T> { // This is a class that inherits from BinaryNode and implements the interfece SortedCollection
     protected BinaryNode<T> root = null;
@@ -64,18 +63,57 @@ implements SortedCollection<T> { // This is a class that inherits from BinaryNod
         root = null;
     }
 
-    public boolean test1() {
-        
-        return true;
+    public boolean test1() { //Int Type BST, tests insert() and size()
+        BinarySearchTree<Integer> test1 = new BinarySearchTree<>();
+        test1.insert(2); test1.insert(4); test1.insert(6); test1.insert(8); test1.insert(10);
+        test1.insert(1); test1.insert(3); test1.insert(5); test1.insert(7); test1.insert(9);
+        boolean leg1 = test1.contains(1) && test1.contains(2) && test1.contains(3) && test1.contains(4) && test1.contains(5) && test1.contains(6) && test1.contains(7) && test1.contains(8) && test1.contains(9) && test1.contains(10); 
+        boolean leg2 = (test1.size() == 10);
+        return leg1 && leg2;
     }
-    public boolean test2() {
-
-        return true;
+    public boolean test2() { //String Type BST, again testing insert() and size() with a different shape as well
+        BinarySearchTree<String> test2 = new BinarySearchTree<>();
+        test2.insert("J"); test2.insert("a"); test2.insert("v"); test2.insert("a"); test2.insert("I");
+        test2.insert("s"); test2.insert("C"); test2.insert("o"); test2.insert("o"); test2.insert("l");
+        boolean leg1 = test2.contains("J") && test2.contains("a") && test2.contains("v") && test2.contains("I") && test2.contains("s") && test2.contains("C") &&  test2.contains("o") && test2.contains("l"); 
+        boolean leg2 = !test2.contains("Z");
+        boolean leg3 = test2.size() == 10;
+        return leg1 && leg2 && leg3;
     }
-    public boolean test3() {
 
-        return true;
+    public boolean test3() { //Testing clear() and IsEmpty()
+        BinarySearchTree<Integer> test3 = new BinarySearchTree<>();
+        test3.insert(100); test3.insert(300); test3.insert(200);
+        boolean leg1 = test3.size() == 3;
+        test3.clear();
+        boolean leg2 = test3.size() == 0 && test3.isEmpty();
+        return leg1 && leg2;
+    }
 
+    public boolean test4() { //Testing NullPointerException
+        BinarySearchTree<Integer> test4 = new BinarySearchTree<>();
+        try {
+            test4.insert(null);
+            return false; // If no exception is caught, return false immediately
+        }
+        catch (NullPointerException e) { //Correct exception is caught, return True
+            return true;
+        }
+        catch (Exception e){ //An erroneous exception is caught, return false
+            return false;
+        }
+
+    }
+    public void main(String args[]){
+        test1();
+        test2();
+        test3();
+        test4();
+        if (test1() && test2() && test3() && test4()){
+            System.out.println("ALL TESTS PASSED");
+        } else{
+            System.out.println("back to work buddy");
+        }
     }
 }
 
