@@ -1,7 +1,6 @@
 public class BinarySearchTree<T extends Comparable<T>> 
-implements SortedCollection<T> { // This is a class that inherits from BinaryNode and implements the interfece SortedCollection
+implements SortedCollection<T> { // This class implements the interface SortedCollection in a generic manner, all generic types must satisfy the bound "extends Comparable<T>"."
     protected BinaryNode<T> root = null;
-    protected int size = 0;
 
     private BinaryNode<T> append(BinaryNode<T> Start, T val){
         if (Start == null) { //This helper method traverse returns the Node in which we are trying to insert or remove at
@@ -58,8 +57,7 @@ implements SortedCollection<T> { // This is a class that inherits from BinaryNod
     }
 
     @Override
-    public void clear(){ //Setting size to 0 and clearing the root node renders the BST cleared, this seems ineffective however all of the BinaryNodes will be swept by the JVM Garabage collector. I imagine this would be poor practice in a language like C
-        size = 0;
+    public void clear(){ //Clearing the root node renders the BST cleared, this seems ineffective however all of the BinaryNodes will be swept by the JVM Garabage collector. I imagine this would be poor practice in a language like C
         root = null;
     }
 
