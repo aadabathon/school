@@ -104,15 +104,17 @@ implements SortedCollection<T> { // This is a class that inherits from BinaryNod
         }
 
     }
-    public void main(String args[]){
-        test1();
-        test2();
-        test3();
-        test4();
-        if (test1() && test2() && test3() && test4()){
+    public static void main(String[] args){
+        BinarySearchTree<Integer> testingInt = new BinarySearchTree<>();
+        BinarySearchTree<String> testingString = new BinarySearchTree<>();
+        boolean l1 = testingInt.test1();
+        boolean l2 = testingString.test2();
+        boolean l3 = testingInt.test3();
+        boolean l4 = testingInt.test4();
+        if (l1 && l2 && l3 && l4){
             System.out.println("ALL TESTS PASSED");
         } else{
-            System.out.println("back to work buddy");
+            System.out.println("Get Back To Work.");
         }
     }
 }
