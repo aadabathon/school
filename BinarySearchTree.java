@@ -3,28 +3,28 @@ implements SortedCollection<T> { // This class implements the interface SortedCo
     protected BinaryNode<T> root = null;
 
     private BinaryNode<T> append(BinaryNode<T> Start, T val){
-        if (Start == null) { //This helper method traverse returns the Node in which we are trying to insert or remove at
+        if (Start == null) { //This recursive helper method append returns a new node with a specified val where we need it.
             return new BinaryNode<>(val);
         }
 
         int i = val.compareTo(Start.data);
-        if (i <= 0) { //This calls recursively until the base case is met, in which a new node is made, returned, and has been assigned the correct pointers in this given BST
+        if (i <= 0) { //This calls recursively until the base case is met, in which a new node is made, returned, and has been assigned the correct pointers in a given BST
             Start.left = append(Start.left, val);
         } else {
             Start.right = append(Start.right, val);
         }
-        return Start;  
+        return Start;  //We return Start on every call of the function where Start != null, this preserves the orginal BST.
     }
 
     @Override
     public void insert(T data) {
-        if (data == null) throw new NullPointerException(); //Throws e if data == null
+        if (data == null) throw new NullPointerException(); //Throws NPE if data == null
         root = append(root, data); //We call the helper method on root, it traverses the tree until the path points to null in which that same path is assigned to a new node of type data, ensuring path preservation AND optimziation.
     }
 
     @Override
     public boolean contains(Comparable<T> data) {
-        if (data == null) throw new NullPointerException(); // Throw e if data == null
+        if (data == null) throw new NullPointerException(); // Throw NPE if data == null
         
         BinaryNode<T> dummy = root; //Start at root
         while(dummy != null) { //Loop while dummy is not null
@@ -57,7 +57,7 @@ implements SortedCollection<T> { // This class implements the interface SortedCo
     }
 
     @Override
-    public void clear(){ //Clearing the root node renders the BST cleared, this seems ineffective however all of the BinaryNodes will be swept by the JVM Garabage collector. I imagine this would be poor practice in a language like C
+    public void clear(){ //Setting the root node to null renders the BST cleared, this seems ineffective however all of the BinaryNodes will be swept by the JVM Garabage collector. I imagine this would be poor practice in a language like C
         root = null;
     }
 
@@ -102,7 +102,7 @@ implements SortedCollection<T> { // This class implements the interface SortedCo
         }
 
     }
-    public static void main(String[] args){
+    public static void main(String[] args){ //main method to confirm our tests
         BinarySearchTree<Integer> testingInt = new BinarySearchTree<>();
         BinarySearchTree<String> testingString = new BinarySearchTree<>();
         boolean l1 = testingInt.test1();
