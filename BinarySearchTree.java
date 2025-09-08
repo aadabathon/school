@@ -1,5 +1,5 @@
 public class BinarySearchTree<T extends Comparable<T>> 
-implements SortedCollection<T> { // This class implements the interface SortedCollection in a generic manner, all generic types must satisfy the bound "extends Comparable<T>"."
+implements SortedCollection<T> { // This class implements the interface SortedCollection in a generic manner, all generic types must satisfy the bound "extends Comparable<T>".
     protected BinaryNode<T> root = null;
 
     private BinaryNode<T> append(BinaryNode<T> Start, T val){
